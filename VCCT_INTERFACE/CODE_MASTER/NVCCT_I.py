@@ -3421,11 +3421,8 @@ def f_cr_static_cfront(rcurve_mm_table,vcct_els_front_dict,all_nodes_dict,analys
 
 
 def GTmax_GSmax(G):
-    
-    GS_max = np.sum(G[:2])
     #prevents spurious negative GS_max
-    if GS_max < 0.0:
-        GS_max = 0
+    GS_max = np.sum(abs(G[:2]))
     
     GTmax = GS_max + G[2]
         
@@ -4572,7 +4569,7 @@ def verbose_output_vcct_txt(step,inc,vcct_els_front_dict,vcct_el_dict,all_nodes_
     vcct_el2txt[:el_count,11] = f_cr[:el_count]
     vcct_el2txt[:el_count,12] = next_a_node[:el_count]
     vcct_el2txt[:el_count,13:19] =  cf_v[:el_count,:]
-    vcct_el2txt[:el_count,20] = a_acc[:el_count]
+    vcct_el2txt[:el_count,19] = a_acc[:el_count]
     
 
     vcct_el2txt = vcct_el2txt[:el_count,:] 
